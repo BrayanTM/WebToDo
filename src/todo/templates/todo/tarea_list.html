@@ -1,0 +1,73 @@
+{% extends 'todo/principal.html' %}
+
+{% block content %}
+
+    <div class="barra-superior">
+
+        <div class="saludo-usuario">
+            <h1>Hola {{request.user|title}}!</h1>
+            <h3>Tienes: <i>{{count}} tarea{{count|pluralize}} pendiente{{count|pluralize}}</i></h3>
+        </div>
+
+        {% if request.user.is_authenticated %}
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button class="btn-barra-superior" type="submit">Cerrar Sesión</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Ingresar</a>
+        {% endif %}
+
+    </div>
+
+
+    <div id="envoltorio-agregar-buscar">
+
+        <form class="form-buscar" method="get" action="">
+
+            <input class="inp-buscar" type="text" name="area-busqueda" placeholder="Buscar..." value="{{ valor_buscado }}">
+            <button class="btn-general" type="submit">Buscar</button>
+
+        </form>
+
+        <a id="enlace-agregar" href="{% url 'crear_tarea' %}"><i class='bxr  bx-book-add' style='color:#ffffff'></i></a>
+
+    </div>
+
+
+    <div class="items-tareas">
+
+        {% for tarea in tareas %}
+
+            <div class="envoltorio-tarea">
+
+                {% if tarea.completada %}
+                    <div class="titulo-tarea">
+
+                        <div class="icono-tarea-completa"></div>
+                        <i><s><a href="{% url 'actualizar_tarea' tarea.id %}">{{tarea}}</a></s></i>
+
+                    </div>
+                    <a class="enlace-eliminar" href="{% url 'eliminar_tarea' tarea.id %}"><i class='bxr  bx-trash'  style='color:#ffffff'></i></a>
+                {% else %}
+
+                    <div class="titulo-tarea">
+
+                        <div class="icono-tarea-incompleta"></div>
+                        <a href="{% url 'actualizar_tarea' tarea.id %}">{{tarea}}</a>
+
+                    </div>
+                    <a class="enlace-eliminar" href="{% url 'eliminar_tarea' tarea.id %}"><i class='bxr  bx-trash'  style='color:#ffffff'></i></a>
+                {% endif %}
+
+            </div>
+
+        {% empty %}
+
+            <p>No hay tareas para mostrar.</p>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock content %}

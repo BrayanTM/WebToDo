@@ -1,0 +1,19 @@
+{% extends 'todo/principal.html' %}
+
+{% block content %}
+
+    <div class="barra-superior">
+        <a class="btn-barra-superior" href="{% url 'lista_pendientes' %}"><i class='bxr  bxs-arrow-big-left-line'></i>&emsp;Volver</a>
+    </div>
+
+    <div class="envoltorio-eliminar">
+        <form method="POST" action="">
+
+        {% csrf_token %}
+        <p>¿Estás seguro de que deseas eliminar la tarea "{{ tareaEliminar }}"?</p>
+        <button class="btn-general" type="submit">Eliminar</button>
+
+    </form>
+    </div>
+
+{% endblock content %}

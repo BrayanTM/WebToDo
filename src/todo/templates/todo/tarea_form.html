@@ -1,0 +1,20 @@
+{% extends 'todo/principal.html' %}
+
+{% block content %}
+
+    <div class="barra-superior">
+        <a class="btn-barra-superior" href="{% url 'lista_pendientes' %}"><i class='bxr  bxs-arrow-big-left-line'  style='color:#ffffff'></i>&emsp;Volver</a>
+    </div>
+
+    <div class="cuerpo-tarjeta">
+        <form method="POST" action="">
+
+            {% csrf_token %}
+            {{form.as_p}}
+
+            <button class="btn-general" type="submit">Guardar</button>
+
+        </form>
+    </div>
+
+{% endblock content %}
