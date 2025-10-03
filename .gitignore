@@ -1,4 +1,3 @@
-# .gitignore base para Python
 # Entorno virtual
 .venv/
 venv/
