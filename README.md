@@ -209,7 +209,3 @@ Este proyecto está abierto a contribuciones. Para contribuir:
 ## 📄 Licencia
 
 Este proyecto es de código abierto y está disponible bajo la licencia MIT.
-
-## 📞 Soporte
-
-Para reportar bugs o solicitar nuevas funcionalidades, por favor crear un issue en el repositorio del proyecto.
